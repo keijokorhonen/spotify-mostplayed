@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+
+import Footer from './components/Footer'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [user, setUser] = useState(null)
+
+    if (user === null) {
+        return (
+            <div>
+                <div className="container main">
+                    <h1>Spotify Most Played Artists and Tracks</h1>
+                    <p>To see your stats, log in to Spotify</p>
+                </div>
+                <Footer />
+            </div>
+        )
+    }
+
+    return (
+        <div>
+            <div className="container main">
+                <h1>Spotify Most Played Tracks and Artists</h1>
+                <p>Test paragraph</p>
+            </div>
+            <Footer />
+        </div>
+    )
 }
 
-export default App;
+export default App
