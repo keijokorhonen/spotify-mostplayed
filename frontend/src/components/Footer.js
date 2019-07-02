@@ -16,6 +16,11 @@ const StyledFooter = styled.div`
     .copyright {
         text-align: center;
     }
+
+    a {
+        text-decoration: none;
+        color: #919496;
+    }
 `
 
 const Footer = () => {
@@ -23,7 +28,7 @@ const Footer = () => {
         <StyledFooter>
             <div className="container copyright">
                 <div>
-                    Made in Finland with <span style={{ color: "#e25555" }}>&#9829;</span> <FontAwesomeIcon icon={faGithub} />
+                    Made in Finland with <span style={{ color: "#e25555" }}>&#9829;</span> Find the code on <a href="https://github.com/keijokorhonen/spotify-mostplayed"><FontAwesomeIcon icon={faGithub} /></a>
                 </div>
             </div>
         </StyledFooter>

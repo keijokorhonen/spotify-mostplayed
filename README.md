@@ -12,3 +12,10 @@ Then start the node app with
     $ npm start
 
 The app should launch on http://localhost:3000.
+
+## Todo
+- Better implementation of API requests (currently all done after page load with useEffect)
+- Top Tracks
+- Token refresh after around an hour
+- Login integrated into frontend
+- Fix visual quirks on mobile

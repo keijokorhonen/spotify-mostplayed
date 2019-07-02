@@ -27,6 +27,7 @@ body {
 
 a {
   text-decoration: none;
+  outline: 0;
 }
 
 code {
@@ -43,6 +44,12 @@ h1, h2, h3, h4, h5, h6 {
 .main {
   display: flex;
   flex-direction: column;
+}
+
+.menu {
+  margin-left: 25px;
+  margin-right: 25px;
+  display: flex;
 }
 
 .container {
