@@ -3,12 +3,15 @@ A frontend to display your top artists and tracks on Spotify using the Spotify W
 
 ## How to run
 First, run the server for spotify authentication. (Ultimately, I want this to be a part of the frontend too)
-
-    $ node auth-server/authorization_code/app.js
+    
+    $ cd auth-server
+    $ npm install
+    $ node authorization_code/app.js
 
 Then start the node app with
 
     $ cd frontend
+    $ npm install
     $ npm start
 
 The app should launch on http://localhost:3000.
