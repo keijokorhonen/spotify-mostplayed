@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledArtist = styled.div`
+const StyledTrack = styled.div`
     display: flex;
     align-items: center;
     padding: 15px;
@@ -36,31 +36,38 @@ const StyledArtist = styled.div`
         object-fit: cover;
     }
     
-    .artistInfo {
+    .trackInfo {
         vertical-align: middle;
     }
 
-    .artistInfo a{
+    .trackInfo a{
         color: #ffffff;
     }
 
-    .artistInfo a:hover {
+    .trackInfo a:hover {
         border-bottom: 1px solid #ffffff;
+    }
+    
+    .trackInfo span {
+        color: rgb(255, 255, 255, 0.3);
     }
 `
 
-const Artist = ({ artist, rank }) => (
-    <StyledArtist>
+const Track = ({ track, rank }) => (
+    <StyledTrack>
         <div className="rank">
             <span>{rank}</span>
         </div>
         <div className="imgContainer">
-            <img alt="" src={artist.images[2].url} />
+            <img alt="" src={track.album.images[2].url} />
         </div>
-        <div className="artistInfo">
-            <a href={artist.external_urls.spotify}>{artist.name}</a>
+        <div className="trackInfo">
+            <a href={track.external_urls.spotify}>{track.name}</a><br />
+            {track.artists.map(a => <span key={a.id}>{a.name}</span>)
+                .reduce((acc, cur) => [acc, (<span>, </span>), cur])
+            }
         </div>
-    </StyledArtist>
+    </StyledTrack>
 )
 
-export default Artist
+export default Track

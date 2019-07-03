@@ -47,9 +47,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .menu {
-  margin-left: 25px;
-  margin-right: 25px;
   display: flex;
+  flex-wrap: wrap;
+}
+
+.outer-menu {
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .container {

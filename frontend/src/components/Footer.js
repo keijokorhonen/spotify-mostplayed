@@ -28,7 +28,7 @@ const Footer = () => {
         <StyledFooter>
             <div className="container copyright">
                 <div>
-                    Made in Finland with <span style={{ color: "#e25555" }}>&#9829;</span> Find the code on <a href="https://github.com/keijokorhonen/spotify-mostplayed"><FontAwesomeIcon icon={faGithub} /></a>
+                    Made in Finland with <span style={{ color: "#e25555" }}>&#9829;</span> Find the source on <a href="https://github.com/keijokorhonen/spotify-mostplayed">GitHub <FontAwesomeIcon icon={faGithub} /></a>
                 </div>
             </div>
         </StyledFooter>
