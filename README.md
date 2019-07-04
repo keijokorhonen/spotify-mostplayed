@@ -21,3 +21,5 @@ The app should launch on http://localhost:3000.
 - Token refresh after around an hour
 - Login integrated into frontend
 - Fix visual quirks on mobile
+- Host on some server
+- Remove excessive dependencies
