@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledTrack = styled.div`
+const StyledItem = styled.div`
     display: flex;
     align-items: center;
     padding: 15px;
@@ -36,38 +36,39 @@ const StyledTrack = styled.div`
         object-fit: cover;
     }
     
-    .trackInfo {
+    .itemInfo {
         vertical-align: middle;
     }
 
-    .trackInfo a{
+    .itemInfo a{
         color: #ffffff;
     }
 
-    .trackInfo a:hover {
-        border-bottom: 1px solid #ffffff;
+    .itemInfo a:hover {
+        text-decoration: underline;
     }
-    
-    .trackInfo span {
-        color: rgb(255, 255, 255, 0.3);
+
+    .itemInfo span {
+        color: rgb(255, 255, 255, 0.5);
     }
 `
 
-const Track = ({ track, rank }) => (
-    <StyledTrack>
+const RankItem = ({ item, image, subitems, rank }) => (
+    <StyledItem>
         <div className="rank">
             <span>{rank}</span>
         </div>
         <div className="imgContainer">
-            <img alt="" src={track.album.images[2].url} />
+            <img alt="" src={image.url} />
         </div>
-        <div className="trackInfo">
-            <a href={track.external_urls.spotify}>{track.name}</a><br />
-            {track.artists.map(a => <span key={a.id}>{a.name}</span>)
-                .reduce((acc, cur) => [acc, (<span>, </span>), cur])
+        <div className="itemInfo">
+            <a href={item.external_urls.spotify}>{item.name}</a><br />
+            <span>{subitems && subitems.map(a => <span key={a.id}>{a.name}</span>)
+                .reduce((acc, cur) => [acc, ", ", cur])
             }
+            </span>
         </div>
-    </StyledTrack>
+    </StyledItem>
 )
 
-export default Track
+export default RankItem

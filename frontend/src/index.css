@@ -28,6 +28,11 @@ body {
 a {
   text-decoration: none;
   outline: 0;
+  color: #1db954;
+}
+
+p {
+  color: #ffffff;
 }
 
 code {
@@ -49,11 +54,16 @@ h1, h2, h3, h4, h5, h6 {
 .menu {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .outer-menu {
   padding-left: 25px;
   padding-right: 25px;
+}
+
+.submenu {
+  flex-direction: column;
 }
 
 .container {
@@ -65,6 +75,14 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 768px) {
   .container {
     width: 750px;
+  }
+  
+  .menu {
+    justify-content: normal;
+  }
+
+  .submenu {
+    flex-direction: row;
   }
 }
 
@@ -78,8 +96,4 @@ h1, h2, h3, h4, h5, h6 {
   .container {
     width: 1170px;
   }
-}
-
-.fa-github {
-  margin-left: 5px;
 }
