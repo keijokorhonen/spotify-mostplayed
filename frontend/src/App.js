@@ -81,7 +81,7 @@ function App() {
                 setTopArtistsShort(items)
             }       
         } catch (error) {
-            console.log(error.message)
+            console.log(error)
         }
     }
 
@@ -98,9 +98,10 @@ function App() {
                 setTopTracksShort(items)
             }       
         } catch (error) {
-            console.log(error.message)
+            console.log(error)
         }
     }
+    
     if (!loggedIn) {
         return (
             <div className="main">
@@ -111,7 +112,7 @@ function App() {
                         </div>
                     </Header>
                     <div className="container">
-                        <p>To see your stats, <a href="http://localhost:8888">log in to Spotify</a></p>
+                        <p>To see your stats, <a href="http://localhost:3001/login">log in to Spotify</a></p>
                     </div>
                 </Background>
                 <Footer />
@@ -128,8 +129,7 @@ function App() {
                         <div className="container">
                             <h1>Spotify - Your Top Tracks and Artists</h1>
                         </div>
-                    </Header>
-                    
+                    </Header>  
                     <Menu logout={logout}/>
                     <div className="container">
                         <Route exact path="/top-artists" render={() => <Artists artists={topArtistsLong} />} />
@@ -141,9 +141,7 @@ function App() {
                     </div>
                 </Background>
             </Router>
-
             <Footer />
-
         </div>
     )
 }
