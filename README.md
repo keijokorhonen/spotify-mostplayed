@@ -20,4 +20,3 @@ The app should launch on http://localhost:3000.
 - Better implementation of API requests (currently all done after page load with useEffect)
 - Token refresh after around an hour
 - Login integrated into frontend
-- Fix visual quirks on mobile
