@@ -1,24 +1,18 @@
 # spotify-mostplayed
 A frontend to display your top artists and tracks on Spotify using the Spotify Web API. Built using React, spotify-web-api-js and styled-components.
 
-## How to run
-First, run the server for spotify authentication. (Ultimately, I want this to be a part of the frontend too)
-    
-    $ cd auth-server
-    $ npm install
-    $ node authorization_code/app.js
+https://spotify-mostplayed.herokuapp.com/
 
-Then start the node app with
+## How to run locally
+First, fill in environment variables for CLIENT_ID, CLIENT_SECRET, REDIRECT_URI and PORT for your spotify app inside of .env in the root directory. 
 
-    $ cd frontend
-    $ npm install
-    $ npm start
+Then run
 
-The app should launch on http://localhost:3000.
+    $ node index.js
+
+in the root directory and the app should launch on localhost on the port you specified.
 
 ## Todo
 - Better implementation of API requests (currently all done after page load with useEffect)
 - Token refresh after around an hour
-- Login integrated into frontend
-- Host on some server
 - Remove excessive dependencies

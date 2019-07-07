@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
 import styled from 'styled-components'
 
@@ -105,6 +105,12 @@ function App() {
     if (!loggedIn) {
         return (
             <div className="main">
+                <Router>
+                    <Switch>
+                        <Route exact path="/" render={null} />
+                        <Redirect to="/" />
+                    </Switch>
+                </Router>
                 <Background>
                     <Header>
                         <div className="container">
