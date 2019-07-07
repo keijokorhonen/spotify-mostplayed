@@ -92,7 +92,6 @@ app.get('/callback', (req, res) => {
 
 app.get('/*', (req, res) => {
     let url = path.join(__dirname, '/frontend/build', 'index.html')
-    console.log(__dirname)
     res.sendFile(url)
 });
 
