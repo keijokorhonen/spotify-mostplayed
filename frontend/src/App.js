@@ -117,7 +117,7 @@ function App() {
                             <h1>Spotify - Your Top Tracks and Artists</h1>
                         </div>
                     </Header>
-                    <div className="container">
+                    <div className="container centertext">
                         <p>To see your stats, <a href="/login">log in to Spotify</a></p>
                     </div>
                 </Background>
