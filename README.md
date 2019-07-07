@@ -7,7 +7,8 @@ https://spotify-mostplayed.herokuapp.com/
 First, fill in environment variables for CLIENT_ID, CLIENT_SECRET, REDIRECT_URI and PORT for your spotify app inside of .env in the root directory. 
 
 Then run
-
+    $ npm install
+    $ npm run build
     $ node index.js
 
 in the root directory and the app should launch on localhost on the port you specified.
