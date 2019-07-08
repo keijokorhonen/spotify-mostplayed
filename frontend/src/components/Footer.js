@@ -8,10 +8,12 @@ const StyledFooter = styled.div`
     color: #919496;
     font-size: 14px;
     align-content: flex-end;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    height: 5rem;
     bottom: 0px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     .copyright {
         text-align: center;

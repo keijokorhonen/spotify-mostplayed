@@ -14,7 +14,7 @@ const Background = styled.div`
     background-color: #000000;
     background-image: linear-gradient(0, #2a4faa 0%, #60359F 100%);
     min-height: 100vh;
-    min-height: calc(100vh - 61px);
+    min-height: calc(100vh - 5rem);
 `
 
 const Header = styled.div`
@@ -45,13 +45,15 @@ function App() {
     }, [])
 
     useEffect(() => {
-        getTopArtists('long')
-        getTopArtists('medium')
-        getTopArtists('short')
-        getTopTracks('long')
-        getTopTracks('medium')
-        getTopTracks('short')
-    }, [])
+        if (loggedIn) {
+            getTopArtists('long')
+            getTopArtists('medium')
+            getTopArtists('short')
+            getTopTracks('long')
+            getTopTracks('medium')
+            getTopTracks('short')
+        }
+    }, [loggedIn])
 
     const getHashParams = () => {
         const hash = window.location.hash.substr(1)
@@ -76,10 +78,10 @@ function App() {
             } else if (period === 'medium') {
                 const { items } = await spotifyApi.getMyTopArtists({ limit: 50, time_range: "medium_term" })
                 setTopArtistsMedium(items)
-            }  else if (period === 'short') {
+            } else if (period === 'short') {
                 const { items } = await spotifyApi.getMyTopArtists({ limit: 50, time_range: "short_term" })
                 setTopArtistsShort(items)
-            }       
+            }
         } catch (error) {
             console.log(error)
         }
@@ -93,15 +95,15 @@ function App() {
             } else if (period === 'medium') {
                 const { items } = await spotifyApi.getMyTopTracks({ limit: 50, time_range: "medium_term" })
                 setTopTracksMedium(items)
-            }  else if (period === 'short') {
+            } else if (period === 'short') {
                 const { items } = await spotifyApi.getMyTopTracks({ limit: 50, time_range: "short_term" })
                 setTopTracksShort(items)
-            }       
+            }
         } catch (error) {
             console.log(error)
         }
     }
-    
+
     if (!loggedIn) {
         return (
             <div className="main">
@@ -118,7 +120,7 @@ function App() {
                         </div>
                     </Header>
                     <div className="container centertext">
-                        <p>To see your stats, <a href="/login">log in to Spotify</a></p>
+                        <p>To see your stats, <a href="http://localhost:3001/login">log in to Spotify</a></p>
                     </div>
                 </Background>
                 <Footer />
@@ -128,15 +130,15 @@ function App() {
 
     return (
         <div className="main">
-            <Router>
-                <Route exact path="/" render={() => <Redirect to="/top-artists" />} />
-                <Background>
+            <Background>
+                <Router>
+                    <Route exact path="/" render={() => <Redirect to="/top-artists" />} />
                     <Header>
                         <div className="container">
                             <h1>Spotify - Your Top Tracks and Artists</h1>
                         </div>
-                    </Header>  
-                    <Menu logout={logout}/>
+                    </Header>
+                    <Menu logout={logout} />
                     <div className="container">
                         <Route exact path="/top-artists" render={() => <Artists artists={topArtistsLong} />} />
                         <Route path="/top-artists/medium" render={() => <Artists artists={topArtistsMedium} />} />
@@ -145,9 +147,9 @@ function App() {
                         <Route path="/top-tracks/medium" render={() => <Tracks tracks={topTracksMedium} />} />
                         <Route path="/top-tracks/short" render={() => <Tracks tracks={topTracksShort} />} />
                     </div>
-                </Background>
-            </Router>
-            <Footer />
+                </Router>
+                <Footer />
+            </Background>
         </div>
     )
 }
