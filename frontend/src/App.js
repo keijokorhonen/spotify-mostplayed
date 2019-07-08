@@ -120,7 +120,7 @@ function App() {
                         </div>
                     </Header>
                     <div className="container centertext">
-                        <p>To see your stats, <a href="http://localhost:3001/login">log in to Spotify</a></p>
+                        <p>To see your stats, <a href="/login">log in to Spotify</a></p>
                     </div>
                 </Background>
                 <Footer />
