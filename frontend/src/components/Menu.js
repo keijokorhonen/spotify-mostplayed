@@ -41,6 +41,7 @@ const Menu = ({ logout }) => (
         <div className="menu outer-menu">
             <StyledLink to="/top-artists"><h2>Artists</h2></StyledLink>
             <StyledLink to="/top-tracks"><h2>Tracks</h2></StyledLink>
+            <StyledLink to="/recently-played"><h2>Recently Played</h2></StyledLink>
         </div>
         <div className="menu outer-menu">
             <Route path="/top-artists" render={() => (

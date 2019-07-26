@@ -10,7 +10,7 @@ const StyledTracks = styled.div`
 const Tracks = ({ tracks }) => (
     <StyledTracks>
         {tracks.map((t, i) =>
-            <div key={t.id}>
+            <div key={i}>
                 <RankItem item={t} image={t.album.images[2]} subitems={t.artists} rank={i + 1} />
             </div>
         )}

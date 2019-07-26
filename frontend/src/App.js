@@ -24,7 +24,7 @@ const Header = styled.div`
     text-align: center;
 `
 
-function App() {
+function App () {
     const [loggedIn, setLoggedIn] = useState(false)
     const [topArtistsLong, setTopArtistsLong] = useState([])
     const [topArtistsMedium, setTopArtistsMedium] = useState([])
@@ -32,6 +32,7 @@ function App() {
     const [topTracksLong, setTopTracksLong] = useState([])
     const [topTracksMedium, setTopTracksMedium] = useState([])
     const [topTracksShort, setTopTracksShort] = useState([])
+    const [recentlyPlayed, setRecentlyPlayed] = useState([])
 
     useEffect(() => {
         const localToken = window.localStorage.getItem('spotify-mostplayed-token')
@@ -52,6 +53,7 @@ function App() {
             getTopTracks('long')
             getTopTracks('medium')
             getTopTracks('short')
+            getRecentlyPlayed()
         }
     }, [loggedIn])
 
@@ -104,6 +106,17 @@ function App() {
         }
     }
 
+    const getRecentlyPlayed = async () => {
+        try {
+            const { items } = await spotifyApi.getMyRecentlyPlayedTracks({ limit: 50, time_range: "long_term" })
+            const tracks = items.map(i => i.track)
+            
+            setRecentlyPlayed(tracks)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     if (!loggedIn) {
         return (
             <div className="main">
@@ -146,6 +159,7 @@ function App() {
                         <Route exact path="/top-tracks" render={() => <Tracks tracks={topTracksLong} />} />
                         <Route path="/top-tracks/medium" render={() => <Tracks tracks={topTracksMedium} />} />
                         <Route path="/top-tracks/short" render={() => <Tracks tracks={topTracksShort} />} />
+                        <Route path="/recently-played" render={() => <Tracks tracks={recentlyPlayed} />} />
                     </div>
                 </Router>
                 <Footer />

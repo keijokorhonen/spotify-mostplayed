@@ -6,18 +6,18 @@ const cookieParser = require('cookie-parser')
 const request = require('request')
 const path = require('path')
 
-var CLIENT_ID = process.env.CLIENT_ID
-var CLIENT_SECRET = process.env.CLIENT_SECRET
-var REDIRECT_URI = process.env.REDIRECT_URI
-var STATE_KEY = 'spotify_auth_state'
+let CLIENT_ID = process.env.CLIENT_ID
+let CLIENT_SECRET = process.env.CLIENT_SECRET
+let REDIRECT_URI = process.env.REDIRECT_URI
+let STATE_KEY = 'spotify_auth_state'
 
 const app = express()
 
-var generateRandomString = function (length) {
-    var text = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+let generateRandomString = function (length) {
+    let text = '';
+    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    for (var i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
@@ -30,7 +30,7 @@ app.get('/login', (req, res) => {
     const state = generateRandomString(16)
     res.cookie(STATE_KEY, state)
 
-    const scope = 'user-read-private user-read-email user-top-read'
+    const scope = 'user-read-private user-read-email user-top-read user-read-recently-played'
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
@@ -43,8 +43,8 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/callback', (req, res) => {
-    var { code, state } = req.query
-    var storedState = req.cookies ? req.cookies[STATE_KEY] : null
+    let { code, state } = req.query
+    let storedState = req.cookies ? req.cookies[STATE_KEY] : null
     
     if (state === null || state !== storedState) {
         res.redirect('/#' +
@@ -90,11 +90,39 @@ app.get('/callback', (req, res) => {
     }
 })
 
+app.get("/refresh_token", function(req, res) {
+  let refresh_token = req.query.refresh_token;
+  let authOptions = {
+    url: "https://accounts.spotify.com/api/token",
+    headers: {
+      Authorization:
+        "Basic " +
+        new Buffer(client_id + ":" + client_secret).toString("base64")
+    },
+    form: {
+      grant_type: "refresh_token",
+      refresh_token: refresh_token
+    },
+    json: true
+  };
+
+  request.post(authOptions, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      let access_token = body.access_token;
+      res.send({
+        access_token: access_token
+      });
+    }
+  });
+});
+
 app.get('/*', (req, res) => {
     let url = path.join(__dirname, '/frontend/build', 'index.html')
     res.sendFile(url)
 });
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server listening on port ${process.env.PORT}`)
+const PORT = process.env.PORT || 3001
+
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`)
 })
